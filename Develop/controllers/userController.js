@@ -4,9 +4,10 @@ module.exports = {
   // Get all users
   async getUsers(req, res) {
     try {
-      const users = await User.find();
+      const users = await User.find().populate("friends").populate("thoughts");
       res.json(users);
     } catch (err) {
+      console.log(err)
       res.status(500).json(err);
     }
   },
@@ -78,16 +79,16 @@ async addFriend(req,res){
   try{
     const user = await User.findOneAndUpdate(
       {_id: req.params.userId},
-      { $addToSet: {friends: req.body}},
+      { $addToSet: {friends: req.params.friendId}},
       { runValidators: true, new: true}
     );
     if(!user){
       return res.status(404).json({message: "No user with this id!"})
     };
     res.json(user)
-  } catch(error){
+  } catch(err){
     console.log(err);
-    res.status(500).json(error);
+    res.status(500).json(err);
   }
 },
 
@@ -95,12 +96,13 @@ async removeFriend(req,res){
   try{
     const user = await User.findOneAndUpdate(
       {_id: req.params.userId},
-      {$pull: {friends: {friendId: req.params.friendId}}},
+      {$pull: {friends: req.params.friendId}},
       { runValidators: true, new: true }
     );
     if(!user){
       return res.status(404).json({message: "No user with this id!"})
     }
+    res.json(user)
   } catch (error){
     console.log(error)
     res.status(500).json(error)

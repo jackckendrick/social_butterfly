@@ -1,13 +1,13 @@
 {
-  "name": "26-Stu_Mongoose-CRUD",
+  "name": "social_butterfly",
   "version": "1.0.0",
-  "description": "Reverse engineer developer activity for CRUD methods in Mongoose",
+  "description": "Social Butterfly is an API for a social media web application that allows user's to share thoughts, reactions and connect with other users.",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node index",
+    "start": "node index.js",
     "dev": "nodemon index",
-    "seed": "node utils/seed"
+    "seed": "node Develop/utils/seed"
   },
   "dependencies": {
     "express": "^4.17.1",

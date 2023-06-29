@@ -1,3 +1,4 @@
+const { Schema, model, Types } = require('mongoose');
 const usernames = [
   "happydog",
   "sillycat",
@@ -151,8 +152,8 @@ const getRandomUsers = (int) => {
     results.push({
       username: getRandomName(),
       email: getRandomArrItem(emails),
-      thoughts: [...getRandomThoughts(2)],
-      friends: [...getFriends(5)],
+      // thoughts: [...getRandomThoughts(2)],
+      // friends: [...getFriends(5)],
     });
   }
   return results;
@@ -164,12 +165,13 @@ const getRandomThoughts = (int) => {
   let results = [];
   for (let i=0; i<int; i++){
     results.push({
-      thoughtText: getRandomArrItem(tohughts),
+      thoughtText: getRandomArrItem(thoughts),
       createdAt: Date.now(),
       username: getRandomName(),
       reactions: [...getReactions(3)]
     })
   }
+  return results;
 }
 
 //gets random reactions to add to the thoughts In the database
@@ -183,21 +185,22 @@ const getReactions = (int) => {
       createdAt: Date.now(),
     })
   }
+  return results;
 }
 
 // Create the tags that will be added to each application
-const getFriends = (int) => {
-  if (int === 1) {
-    return getRandomName();
-  }
-  const results = [];
-  for (let i = 0; i < int; i++) {
-    results.push({
-      username: getRandomName(),
-    });
-  }
-  return results;
-};
+// const getFriends = (int) => {
+//   if (int === 1) {
+//     return getRandomName();
+//   }
+//   const results = [];
+//   for (let i = 0; i < int; i++) {
+//     results.push({
+//       username: getRandomName(),
+//     });
+//   }
+//   return results;
+// };
 
 // Export the functions for use in seed.js
-module.exports = { getRandomUsers,getRandomThoughts };
+module.exports = { getRandomUsers, getRandomThoughts };

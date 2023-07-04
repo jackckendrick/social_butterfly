@@ -21,7 +21,7 @@ The following gifs demonstrate the usage of Postman to test the routes and endpo
 
 Github repository link: https://github.com/jackckendrick/social_butterfly
 
-Youtube video shopster tutorial: https://youtu.be/SebIkALJOw0
+Youtube video Social Butterfly tutorial: https://youtu.be/SebIkALJOw0
 
 # License
 
